@@ -12,13 +12,28 @@ export class CrewComponent implements OnInit {
     { name: "Ellen Ochoa", firstMission: true },
   ];
   memberBeingEdited: object = null;
+  inCrew: boolean = false;
 
   constructor() {}
 
   ngOnInit() {}
 
-  addToCrew(memberName: string, isFirst: boolean) {
-    this.crew.push({ name: memberName, firstMission: isFirst });
+  add(memberName: string, isFirst: boolean) {
+    for (let i = 0; i < this.crew.length; i++) {
+      let crewMember = this.crew[i];
+      let name = crewMember["name"];
+      if (name === memberName || memberName === "") {
+        this.inCrew = true;
+      } else {
+        this.inCrew = false;
+      }
+    }
+
+    if (this.inCrew) {
+      alert("You must enter a new crew member");
+    } else {
+      this.crew.push({ name: memberName, firstMission: isFirst });
+    }
   }
   remove(member: object) {
     let index = this.crew.indexOf(member);
