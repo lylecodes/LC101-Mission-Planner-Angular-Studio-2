@@ -23,9 +23,10 @@ export class EquipmentComponent implements OnInit {
     let isNewItem: boolean = false;
     for (let i = 0; i < this.equipment.length; i++) {
       let equipmentItem = this.equipment[i];
-      if (item === equipmentItem) {
+      if (item === equipmentItem || item === "") {
         alert(`Enter a valid item`);
         isNewItem = false;
+        return 0;
       } else {
         isNewItem = true;
       }
@@ -42,7 +43,8 @@ export class EquipmentComponent implements OnInit {
     this.itemBeingEdited = item;
   }
   save(name: string, item: string) {
-    item = name;
+    let index = this.equipment.indexOf(item);
+    this.equipment[index] = name;
     this.itemBeingEdited = null;
   }
 }

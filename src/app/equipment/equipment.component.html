@@ -4,13 +4,13 @@
     <span *ngIf="itemBeingEdited !== item; else elseBlock">
       <span (click)="editEquipment(item)" class="editable-text">
         {{ item }}</span
-      ><button (click)="removeEquipment(item)">remove</button></span
-    >
+      ><button (click)="removeEquipment(item)">remove</button>
+    </span>
+
     <ng-template #elseBlock>
       <input
         #updatedName
         (keyup.enter)="save(updatedName.value, item)"
-        type="text"
         value="{{ item }}"
       />
       <button (click)="save(updatedName.value, item)">save</button>
